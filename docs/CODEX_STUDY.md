@@ -1,0 +1,67 @@
+# Codex에서 공부하고 서재에 반영하기
+
+웹에는 질문 입력이나 AI 모델 호출이 없다. 같은 `vividparachute` 프로젝트에서 새 Codex 채팅을 열고 `2026 A 3번에서 ReLU를 어디에 적용하는지 힌트만 줘`처럼 물으면 된다. 프로젝트의 `AGENTS.md`가 답변과 기록 절차를 지정한다. 다른 프로젝트에서도 `vividparachute-study` 사용자 스킬을 사용할 수 있다.
+
+## 조회
+
+```powershell
+npm run study -- context "2026 A 3번"
+npm run study -- context "활성화 함수"
+```
+
+문항 조회 결과에는 실제 원본 이미지의 `absolutePath`, 원 추출/교정 텍스트, 기존 개념 본문·버전, 질문 이력, 문제 연결이 포함된다. Codex는 이미지들을 직접 읽고 질문에 답한다. 모호한 번호는 추측하지 않는다.
+
+## 저장
+
+JSON을 `data/private/inbox/` 등에 UTF-8로 작성하고 아래 명령을 실행한다. 스키마는 `lib/types.ts`의 `StudyEntrySchema`다.
+
+```json
+{
+  "entryId": "unique-stable-id-for-this-conversation-turn",
+  "questionId": "info-computer-2026-A-3",
+  "question": "사용자가 실제로 질문한 원문",
+  "answer": "Codex에서 실제로 제공한 답변",
+  "source": "Codex 학습 채팅 (알 수 있는 경우 채팅 식별자)",
+  "concepts": [
+    {
+      "slug": "existing-slug-or-new-name",
+      "title": "개념 이름",
+      "aliases": [],
+      "body": "기존 내용을 통합해 다시 편집한 Markdown 완성 본문",
+      "context": "이 문제에서 이 개념이 필요한 맥락",
+      "expectedVersion": 0
+    }
+  ],
+  "reflections": []
+}
+```
+
+예시는 입력 필드 안내일 뿐 실제 학습 기록으로 저장하지 않는다. 신규 개념은 버전 0, 기존 개념은 `context`에서 조회한 현재 버전을 쓴다. 같은 개념을 여러 번 새로 만들거나 답변을 통째로 이어 붙이지 않는다. 원문 질문과 설명은 메시지로 보존하고, 전과는 객관적 지식만 간결하게 통합한다. 사용자가 직접 말하지 않은 오답·사고·이해 상태를 만들어 저장하지 않는다. `reflections`는 사용자가 명시한 내용만 `thought/confusion/mistake/review/memo`로 분류한다.
+
+```powershell
+npm run study -- record "data/private/inbox/entry.json"
+```
+
+저장과 개념 변경은 하나의 DB 트랜잭션이다. 같은 `entryId`의 동일 요청은 중복 저장하지 않는다. 버전 충돌 시 원본을 다시 조회해 통합하고 재시도한다. 저장 후 자동으로 비공개 Blob에 게시한다. 동기화만 실패하면 로컬 기록은 남고 명령은 실패 상태를 알린다.
+
+```powershell
+npm run sync
+```
+
+웹은 저장소 버전을 약 3초마다 확인해 열린 페이지를 갱신한다. PC가 꺼져도 마지막으로 게시한 내용은 배포된 서재에서 읽을 수 있다. 새 기록을 올릴 때는 이 PC의 Codex/로컬 DB를 사용한다. Codex 앱의 모든 과거 채팅을 몰래 읽거나 상시 감시하는 서비스는 아니다.
+
+## PDF
+
+웹의 `PDF 다운로드`는 그 시점의 원문·질문·정리·개념·메모를 반영한다. 기출 PDF는 원본 크롭의 숨은 OCR 텍스트층과 읽을 수 있는 복습 노트 페이지를 포함한다. 개념 PDF는 본문·관련 기출·학습 기록을 포함한다. 한글과 수식은 폰트를 포함한 선택 가능한 텍스트다. 원문 OCR의 오독 가능성과 전사 검수 상태는 보존한다.
+
+Codex에서도 직접 만들 수 있다.
+
+```powershell
+npm run study -- pdf "2026 A 3번" "output/pdf/2026-A-3.pdf"
+```
+
+필기는 다운로드한 PDF를 평소 필기 앱에서 한다.
+
+## 배포와 개인정보
+
+소스 코드는 공개 GitHub, 기출/개인 기록은 비공개 Blob이다. Vercel Authentication으로 보호한 개인 배포에서 읽는다. 로컬 비밀값은 `.env.local`에만 있고 출력하거나 커밋하지 않는다. 클라우드 동기화는 앱 코드 배포와 별개여서, 새 학습 기록마다 빌드가 필요하지 않다.

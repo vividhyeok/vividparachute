@@ -1,0 +1,854 @@
+{
+  "version": 1,
+  "description": "자동 추출 결과가 틀린 문항에만 수동 영역을 지정하세요. page는 1부터 시작, rect 단위는 PDF point.",
+  "questions": {
+    "info-computer-2025-A-1": {
+      "segments": [
+        {
+          "page": 1,
+          "rect": [
+            58,
+            231,
+            295,
+            761
+          ]
+        }
+      ],
+      "score": 2,
+      "review_note": "2026-11-23: source page render inspected; OCR transcription still needs review",
+      "source_sha256": "b23f36a284867cc4a3de26f91396b0419006ce3fd4f85c484588ee3b89323edc"
+    },
+    "info-computer-2025-A-2": {
+      "segments": [
+        {
+          "page": 1,
+          "rect": [
+            301,
+            198,
+            536,
+            761
+          ]
+        }
+      ],
+      "score": 2,
+      "review_note": "2026-11-23: source page render inspected; OCR transcription still needs review",
+      "source_sha256": "b23f36a284867cc4a3de26f91396b0419006ce3fd4f85c484588ee3b89323edc"
+    },
+    "info-computer-2025-A-3": {
+      "segments": [
+        {
+          "page": 2,
+          "rect": [
+            58,
+            95,
+            295,
+            761
+          ]
+        }
+      ],
+      "score": 2,
+      "review_note": "2026-11-23: source page render inspected; OCR transcription still needs review",
+      "source_sha256": "b23f36a284867cc4a3de26f91396b0419006ce3fd4f85c484588ee3b89323edc"
+    },
+    "info-computer-2025-A-4": {
+      "segments": [
+        {
+          "page": 2,
+          "rect": [
+            301,
+            95,
+            536,
+            389
+          ]
+        }
+      ],
+      "score": 2,
+      "review_note": "2026-11-23: source page render inspected; OCR transcription still needs review",
+      "source_sha256": "b23f36a284867cc4a3de26f91396b0419006ce3fd4f85c484588ee3b89323edc"
+    },
+    "info-computer-2025-A-5": {
+      "segments": [
+        {
+          "page": 2,
+          "rect": [
+            301,
+            392,
+            536,
+            761
+          ]
+        }
+      ],
+      "score": 4,
+      "review_note": "2026-11-23: source page render inspected; OCR transcription still needs review",
+      "source_sha256": "b23f36a284867cc4a3de26f91396b0419006ce3fd4f85c484588ee3b89323edc"
+    },
+    "info-computer-2025-A-6": {
+      "segments": [
+        {
+          "page": 3,
+          "rect": [
+            58,
+            95,
+            295,
+            761
+          ]
+        },
+        {
+          "page": 3,
+          "rect": [
+            301,
+            95,
+            536,
+            235
+          ]
+        }
+      ],
+      "score": 4,
+      "review_note": "2026-11-23: source page render inspected; OCR transcription still needs review",
+      "source_sha256": "b23f36a284867cc4a3de26f91396b0419006ce3fd4f85c484588ee3b89323edc"
+    },
+    "info-computer-2025-A-7": {
+      "segments": [
+        {
+          "page": 3,
+          "rect": [
+            301,
+            250,
+            536,
+            761
+          ]
+        }
+      ],
+      "score": 4,
+      "review_note": "2026-11-23: source page render inspected; OCR transcription still needs review",
+      "source_sha256": "b23f36a284867cc4a3de26f91396b0419006ce3fd4f85c484588ee3b89323edc"
+    },
+    "info-computer-2025-A-8": {
+      "segments": [
+        {
+          "page": 4,
+          "rect": [
+            58,
+            95,
+            295,
+            761
+          ]
+        },
+        {
+          "page": 4,
+          "rect": [
+            301,
+            95,
+            536,
+            761
+          ]
+        }
+      ],
+      "score": 4,
+      "review_note": "2026-11-23: source page render inspected; OCR transcription still needs review",
+      "source_sha256": "b23f36a284867cc4a3de26f91396b0419006ce3fd4f85c484588ee3b89323edc"
+    },
+    "info-computer-2025-A-9": {
+      "segments": [
+        {
+          "page": 5,
+          "rect": [
+            58,
+            95,
+            295,
+            761
+          ]
+        }
+      ],
+      "score": 4,
+      "review_note": "2026-11-23: source page render inspected; OCR transcription still needs review",
+      "source_sha256": "b23f36a284867cc4a3de26f91396b0419006ce3fd4f85c484588ee3b89323edc"
+    },
+    "info-computer-2025-A-10": {
+      "segments": [
+        {
+          "page": 5,
+          "rect": [
+            301,
+            95,
+            536,
+            761
+          ]
+        }
+      ],
+      "score": 4,
+      "review_note": "2026-11-23: source page render inspected; OCR transcription still needs review",
+      "source_sha256": "b23f36a284867cc4a3de26f91396b0419006ce3fd4f85c484588ee3b89323edc"
+    },
+    "info-computer-2025-A-11": {
+      "segments": [
+        {
+          "page": 6,
+          "rect": [
+            58,
+            95,
+            295,
+            761
+          ]
+        },
+        {
+          "page": 6,
+          "rect": [
+            301,
+            95,
+            536,
+            761
+          ]
+        }
+      ],
+      "score": 4,
+      "review_note": "2026-11-23: source page render inspected; OCR transcription still needs review",
+      "source_sha256": "b23f36a284867cc4a3de26f91396b0419006ce3fd4f85c484588ee3b89323edc"
+    },
+    "info-computer-2025-A-12": {
+      "segments": [
+        {
+          "page": 7,
+          "rect": [
+            58,
+            95,
+            295,
+            761
+          ]
+        },
+        {
+          "page": 7,
+          "rect": [
+            301,
+            95,
+            536,
+            500
+          ]
+        }
+      ],
+      "score": 4,
+      "review_note": "2026-11-23: source page render inspected; OCR transcription still needs review",
+      "source_sha256": "b23f36a284867cc4a3de26f91396b0419006ce3fd4f85c484588ee3b89323edc"
+    },
+    "info-computer-2025-B-1": {
+      "segments": [
+        {
+          "page": 1,
+          "rect": [
+            58,
+            231,
+            295,
+            761
+          ]
+        },
+        {
+          "page": 1,
+          "rect": [
+            301,
+            198,
+            536,
+            290
+          ]
+        }
+      ],
+      "score": 2,
+      "review_note": "2026-11-23: source page render inspected; OCR transcription still needs review",
+      "source_sha256": "3348389b8ceaf087de3543219dacc9ed3c7b4901075ca70804629c9ca1cb7458"
+    },
+    "info-computer-2025-B-2": {
+      "segments": [
+        {
+          "page": 1,
+          "rect": [
+            301,
+            355,
+            536,
+            761
+          ]
+        }
+      ],
+      "score": 2,
+      "review_note": "2026-11-23: source page render inspected; OCR transcription still needs review",
+      "source_sha256": "3348389b8ceaf087de3543219dacc9ed3c7b4901075ca70804629c9ca1cb7458"
+    },
+    "info-computer-2025-B-3": {
+      "segments": [
+        {
+          "page": 2,
+          "rect": [
+            58,
+            95,
+            295,
+            761
+          ]
+        }
+      ],
+      "score": 4,
+      "review_note": "2026-11-23: source page render inspected; OCR transcription still needs review",
+      "source_sha256": "3348389b8ceaf087de3543219dacc9ed3c7b4901075ca70804629c9ca1cb7458"
+    },
+    "info-computer-2025-B-4": {
+      "segments": [
+        {
+          "page": 2,
+          "rect": [
+            301,
+            95,
+            536,
+            761
+          ]
+        }
+      ],
+      "score": 4,
+      "review_note": "2026-11-23: source page render inspected; OCR transcription still needs review",
+      "source_sha256": "3348389b8ceaf087de3543219dacc9ed3c7b4901075ca70804629c9ca1cb7458"
+    },
+    "info-computer-2025-B-5": {
+      "segments": [
+        {
+          "page": 3,
+          "rect": [
+            58,
+            95,
+            295,
+            761
+          ]
+        },
+        {
+          "page": 3,
+          "rect": [
+            301,
+            95,
+            536,
+            761
+          ]
+        }
+      ],
+      "score": 4,
+      "review_note": "2026-11-23: source page render inspected; OCR transcription still needs review",
+      "source_sha256": "3348389b8ceaf087de3543219dacc9ed3c7b4901075ca70804629c9ca1cb7458"
+    },
+    "info-computer-2025-B-6": {
+      "segments": [
+        {
+          "page": 4,
+          "rect": [
+            58,
+            95,
+            295,
+            761
+          ]
+        },
+        {
+          "page": 4,
+          "rect": [
+            301,
+            95,
+            536,
+            761
+          ]
+        }
+      ],
+      "score": 4,
+      "review_note": "2026-11-23: source page render inspected; OCR transcription still needs review",
+      "source_sha256": "3348389b8ceaf087de3543219dacc9ed3c7b4901075ca70804629c9ca1cb7458"
+    },
+    "info-computer-2025-B-7": {
+      "segments": [
+        {
+          "page": 5,
+          "rect": [
+            58,
+            95,
+            295,
+            761
+          ]
+        }
+      ],
+      "score": 4,
+      "review_note": "2026-11-23: source page render inspected; OCR transcription still needs review",
+      "source_sha256": "3348389b8ceaf087de3543219dacc9ed3c7b4901075ca70804629c9ca1cb7458"
+    },
+    "info-computer-2025-B-8": {
+      "segments": [
+        {
+          "page": 5,
+          "rect": [
+            301,
+            95,
+            536,
+            761
+          ]
+        }
+      ],
+      "score": 4,
+      "review_note": "2026-11-23: source page render inspected; OCR transcription still needs review",
+      "source_sha256": "3348389b8ceaf087de3543219dacc9ed3c7b4901075ca70804629c9ca1cb7458"
+    },
+    "info-computer-2025-B-9": {
+      "segments": [
+        {
+          "page": 6,
+          "rect": [
+            58,
+            95,
+            295,
+            761
+          ]
+        },
+        {
+          "page": 6,
+          "rect": [
+            301,
+            95,
+            536,
+            761
+          ]
+        }
+      ],
+      "score": 4,
+      "review_note": "2026-11-23: source page render inspected; OCR transcription still needs review",
+      "source_sha256": "3348389b8ceaf087de3543219dacc9ed3c7b4901075ca70804629c9ca1cb7458"
+    },
+    "info-computer-2025-B-10": {
+      "segments": [
+        {
+          "page": 7,
+          "rect": [
+            58,
+            95,
+            295,
+            761
+          ]
+        },
+        {
+          "page": 7,
+          "rect": [
+            301,
+            95,
+            536,
+            220
+          ]
+        }
+      ],
+      "score": 4,
+      "review_note": "2026-11-23: source page render inspected; OCR transcription still needs review",
+      "source_sha256": "3348389b8ceaf087de3543219dacc9ed3c7b4901075ca70804629c9ca1cb7458"
+    },
+    "info-computer-2025-B-11": {
+      "segments": [
+        {
+          "page": 7,
+          "rect": [
+            301,
+            273,
+            536,
+            761
+          ]
+        }
+      ],
+      "score": 4,
+      "review_note": "2026-11-23: source page render inspected; OCR transcription still needs review",
+      "source_sha256": "3348389b8ceaf087de3543219dacc9ed3c7b4901075ca70804629c9ca1cb7458"
+    },
+    "info-computer-2026-A-1": {
+      "segments": [
+        {
+          "page": 1,
+          "rect": [
+            30,
+            332.74,
+            417.0,
+            1076.66
+          ]
+        }
+      ],
+      "review_note": "2026-11-23: source page / crop contact sheets compared; includes leading and full-column continuations. Text verification is separate.",
+      "source_sha256": "9a17670ad9aea31516c138e2c0b0119968bbbde93588ddfcff500ad348e7e611"
+    },
+    "info-computer-2026-A-2": {
+      "segments": [
+        {
+          "page": 1,
+          "rect": [
+            425.0,
+            279.58,
+            817.0,
+            1076.66
+          ]
+        }
+      ],
+      "review_note": "2026-11-23: source page / crop contact sheets compared; includes leading and full-column continuations. Text verification is separate.",
+      "source_sha256": "9a17670ad9aea31516c138e2c0b0119968bbbde93588ddfcff500ad348e7e611"
+    },
+    "info-computer-2026-A-3": {
+      "segments": [
+        {
+          "page": 2,
+          "rect": [
+            30,
+            139.12,
+            417.0,
+            1076.66
+          ]
+        }
+      ],
+      "review_note": "2026-11-23: source page / crop contact sheets compared; includes leading and full-column continuations. Text verification is separate.",
+      "source_sha256": "9a17670ad9aea31516c138e2c0b0119968bbbde93588ddfcff500ad348e7e611"
+    },
+    "info-computer-2026-A-4": {
+      "segments": [
+        {
+          "page": 2,
+          "rect": [
+            425.0,
+            139.12,
+            817.0,
+            1076.66
+          ]
+        }
+      ],
+      "review_note": "2026-11-23: source page / crop contact sheets compared; includes leading and full-column continuations. Text verification is separate.",
+      "source_sha256": "9a17670ad9aea31516c138e2c0b0119968bbbde93588ddfcff500ad348e7e611"
+    },
+    "info-computer-2026-A-5": {
+      "segments": [
+        {
+          "page": 3,
+          "rect": [
+            30,
+            139.12,
+            417.0,
+            1076.66
+          ]
+        }
+      ],
+      "review_note": "2026-11-23: source page / crop contact sheets compared; includes leading and full-column continuations. Text verification is separate.",
+      "source_sha256": "9a17670ad9aea31516c138e2c0b0119968bbbde93588ddfcff500ad348e7e611"
+    },
+    "info-computer-2026-A-6": {
+      "segments": [
+        {
+          "page": 3,
+          "rect": [
+            425.0,
+            139.12,
+            817.0,
+            1076.66
+          ]
+        }
+      ],
+      "review_note": "2026-11-23: source page / crop contact sheets compared; includes leading and full-column continuations. Text verification is separate.",
+      "source_sha256": "9a17670ad9aea31516c138e2c0b0119968bbbde93588ddfcff500ad348e7e611"
+    },
+    "info-computer-2026-A-7": {
+      "segments": [
+        {
+          "page": 4,
+          "rect": [
+            30,
+            139.12,
+            417.0,
+            1076.66
+          ]
+        }
+      ],
+      "review_note": "2026-11-23: source page / crop contact sheets compared; includes leading and full-column continuations. Text verification is separate.",
+      "source_sha256": "9a17670ad9aea31516c138e2c0b0119968bbbde93588ddfcff500ad348e7e611"
+    },
+    "info-computer-2026-A-8": {
+      "segments": [
+        {
+          "page": 4,
+          "rect": [
+            425.0,
+            139.12,
+            817.0,
+            1076.66
+          ]
+        }
+      ],
+      "review_note": "2026-11-23: source page / crop contact sheets compared; includes leading and full-column continuations. Text verification is separate.",
+      "source_sha256": "9a17670ad9aea31516c138e2c0b0119968bbbde93588ddfcff500ad348e7e611"
+    },
+    "info-computer-2026-A-9": {
+      "segments": [
+        {
+          "page": 5,
+          "rect": [
+            30,
+            139.12,
+            417.0,
+            1076.66
+          ]
+        },
+        {
+          "page": 5,
+          "rect": [
+            425.0,
+            137.67,
+            817.0,
+            780.56
+          ]
+        }
+      ],
+      "review_note": "2026-11-23: source page / crop contact sheets compared; includes leading and full-column continuations. Text verification is separate.",
+      "source_sha256": "9a17670ad9aea31516c138e2c0b0119968bbbde93588ddfcff500ad348e7e611"
+    },
+    "info-computer-2026-A-10": {
+      "segments": [
+        {
+          "page": 6,
+          "rect": [
+            30,
+            139.12,
+            417.0,
+            1076.66
+          ]
+        }
+      ],
+      "review_note": "2026-11-23: source page / crop contact sheets compared; includes leading and full-column continuations. Text verification is separate.",
+      "source_sha256": "9a17670ad9aea31516c138e2c0b0119968bbbde93588ddfcff500ad348e7e611"
+    },
+    "info-computer-2026-A-11": {
+      "segments": [
+        {
+          "page": 6,
+          "rect": [
+            425.0,
+            139.12,
+            817.0,
+            1076.66
+          ]
+        }
+      ],
+      "review_note": "2026-11-23: source page / crop contact sheets compared; includes leading and full-column continuations. Text verification is separate.",
+      "source_sha256": "9a17670ad9aea31516c138e2c0b0119968bbbde93588ddfcff500ad348e7e611"
+    },
+    "info-computer-2026-A-12": {
+      "segments": [
+        {
+          "page": 7,
+          "rect": [
+            30,
+            139.12,
+            417.0,
+            1076.66
+          ]
+        },
+        {
+          "page": 7,
+          "rect": [
+            425.0,
+            137.91,
+            817.0,
+            765
+          ]
+        }
+      ],
+      "review_note": "2026-11-23: source page / crop contact sheets compared; includes leading and full-column continuations. Text verification is separate.",
+      "source_sha256": "9a17670ad9aea31516c138e2c0b0119968bbbde93588ddfcff500ad348e7e611"
+    },
+    "info-computer-2026-B-1": {
+      "segments": [
+        {
+          "page": 1,
+          "rect": [
+            30,
+            332.74,
+            417.0,
+            1076.66
+          ]
+        }
+      ],
+      "review_note": "2026-11-23: source page / crop contact sheets compared; includes leading and full-column continuations. Text verification is separate.",
+      "source_sha256": "275e086042320efed3f2288c3c63272495605e9d713aded95bdf111a906c1c65"
+    },
+    "info-computer-2026-B-2": {
+      "segments": [
+        {
+          "page": 1,
+          "rect": [
+            425.0,
+            279.58,
+            817.0,
+            1076.66
+          ]
+        }
+      ],
+      "review_note": "2026-11-23: source page / crop contact sheets compared; includes leading and full-column continuations. Text verification is separate.",
+      "source_sha256": "275e086042320efed3f2288c3c63272495605e9d713aded95bdf111a906c1c65"
+    },
+    "info-computer-2026-B-3": {
+      "segments": [
+        {
+          "page": 2,
+          "rect": [
+            30,
+            139.12,
+            417.0,
+            1076.66
+          ]
+        },
+        {
+          "page": 2,
+          "rect": [
+            425.0,
+            137.67,
+            817.0,
+            789.2
+          ]
+        }
+      ],
+      "review_note": "2026-11-23: source page / crop contact sheets compared; includes leading and full-column continuations. Text verification is separate.",
+      "source_sha256": "275e086042320efed3f2288c3c63272495605e9d713aded95bdf111a906c1c65"
+    },
+    "info-computer-2026-B-4": {
+      "segments": [
+        {
+          "page": 3,
+          "rect": [
+            30,
+            139.12,
+            417.0,
+            1076.66
+          ]
+        },
+        {
+          "page": 3,
+          "rect": [
+            425.0,
+            125.05,
+            817.0,
+            309.94
+          ]
+        }
+      ],
+      "review_note": "2026-11-23: source page / crop contact sheets compared; includes leading and full-column continuations. Text verification is separate.",
+      "source_sha256": "275e086042320efed3f2288c3c63272495605e9d713aded95bdf111a906c1c65"
+    },
+    "info-computer-2026-B-5": {
+      "segments": [
+        {
+          "page": 3,
+          "rect": [
+            425.0,
+            312.94,
+            817.0,
+            1076.66
+          ]
+        }
+      ],
+      "review_note": "2026-11-23: source page / crop contact sheets compared; includes leading and full-column continuations. Text verification is separate.",
+      "source_sha256": "275e086042320efed3f2288c3c63272495605e9d713aded95bdf111a906c1c65"
+    },
+    "info-computer-2026-B-6": {
+      "segments": [
+        {
+          "page": 4,
+          "rect": [
+            30,
+            139.12,
+            417.0,
+            1076.66
+          ]
+        }
+      ],
+      "review_note": "2026-11-23: source page / crop contact sheets compared; includes leading and full-column continuations. Text verification is separate.",
+      "source_sha256": "275e086042320efed3f2288c3c63272495605e9d713aded95bdf111a906c1c65"
+    },
+    "info-computer-2026-B-7": {
+      "segments": [
+        {
+          "page": 4,
+          "rect": [
+            425.0,
+            139.12,
+            817.0,
+            1076.66
+          ]
+        }
+      ],
+      "review_note": "2026-11-23: source page / crop contact sheets compared; includes leading and full-column continuations. Text verification is separate.",
+      "source_sha256": "275e086042320efed3f2288c3c63272495605e9d713aded95bdf111a906c1c65"
+    },
+    "info-computer-2026-B-8": {
+      "segments": [
+        {
+          "page": 5,
+          "rect": [
+            30,
+            139.12,
+            417.0,
+            1076.66
+          ]
+        }
+      ],
+      "review_note": "2026-11-23: source page / crop contact sheets compared; includes leading and full-column continuations. Text verification is separate.",
+      "source_sha256": "275e086042320efed3f2288c3c63272495605e9d713aded95bdf111a906c1c65"
+    },
+    "info-computer-2026-B-9": {
+      "segments": [
+        {
+          "page": 5,
+          "rect": [
+            425.0,
+            139.12,
+            817.0,
+            1076.66
+          ]
+        }
+      ],
+      "review_note": "2026-11-23: source page / crop contact sheets compared; includes leading and full-column continuations. Text verification is separate.",
+      "source_sha256": "275e086042320efed3f2288c3c63272495605e9d713aded95bdf111a906c1c65"
+    },
+    "info-computer-2026-B-10": {
+      "segments": [
+        {
+          "page": 6,
+          "rect": [
+            30,
+            139.12,
+            417.0,
+            1076.66
+          ]
+        },
+        {
+          "page": 6,
+          "rect": [
+            425.0,
+            137.91,
+            817.0,
+            508.88
+          ]
+        }
+      ],
+      "review_note": "2026-11-23: source page / crop contact sheets compared; includes leading and full-column continuations. Text verification is separate.",
+      "source_sha256": "275e086042320efed3f2288c3c63272495605e9d713aded95bdf111a906c1c65"
+    },
+    "info-computer-2026-B-11": {
+      "segments": [
+        {
+          "page": 7,
+          "rect": [
+            30,
+            139.12,
+            417.0,
+            1076.66
+          ]
+        },
+        {
+          "page": 7,
+          "rect": [
+            425.0,
+            137.67,
+            817.0,
+            855
+          ]
+        }
+      ],
+      "review_note": "2026-11-23: source page / crop contact sheets compared; includes leading and full-column continuations. Text verification is separate.",
+      "source_sha256": "275e086042320efed3f2288c3c63272495605e9d713aded95bdf111a906c1c65"
+    }
+  }
+}

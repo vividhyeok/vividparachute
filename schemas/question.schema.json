@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Exam question for a personal top-down study notebook",
+  "type": "object",
+  "required": ["id", "exam", "question_number", "score", "source", "raw_text", "assets", "analysis", "review"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^info-computer-(2025|2026)-[AB]-([1-9]|1[0-2])$"},
+    "exam": {"type": "object", "required": ["academic_year", "subject", "section"], "properties": {
+      "academic_year": {"type": "integer"}, "subject": {"const": "정보·컴퓨터"}, "section": {"enum": ["A", "B"]}
+    }},
+    "question_number": {"type": "integer", "minimum": 1},
+    "score": {"type": ["integer", "null"], "minimum": 1},
+    "source": {"type": "object", "required": ["original_pdf", "sha256", "source_page_url", "pdf_pages"], "properties": {
+      "original_pdf": {"type": "string"}, "sha256": {"type": "string"}, "source_page_url": {"type": "string"}, "pdf_pages": {"type": "array", "items": {"type": "integer"}}
+    }},
+    "raw_text": {"type": "string"},
+    "verified_text": {"type": "string", "description": "원문 대조 교정본. raw_text는 별도로 보존한다."},
+    "assets": {"type": "array", "items": {"type": "object", "required": ["path", "page", "region"], "properties": {
+      "path": {"type": "string"}, "page": {"type": "integer"}, "region": {"type": "array", "items": {"type": "number"}, "minItems": 4, "maxItems": 4}, "kind": {"enum": ["question_crop", "page_fallback"]}
+    }}},
+    "analysis": {"type": "object", "required": ["status", "visuals", "sections", "concept_tags"], "properties": {
+      "status": {"enum": ["pending", "needs_review", "verified"]},
+      "visuals": {"type": "array", "items": {"type": "object", "properties": {
+        "asset_path": {"type": "string"}, "type": {"type": "string"}, "description": {"type": "string"}, "semantic_role": {"type": "string"}, "confidence": {"enum": ["verified", "inferred", "uncertain"]}
+      }}},
+      "sections": {"type": "array", "items": {"type": "object", "properties": {
+        "type": {"enum": ["stem", "given", "condition", "code", "table", "formula", "diagram", "task", "other"]},
+        "text": {"type": "string"}, "source_asset": {"type": "string"}
+      }}},
+      "concept_tags": {"type": "array", "items": {"type": "string"}}
+    }},
+    "review": {"type": "object", "required": ["required", "reasons"], "properties": {
+      "required": {"type": "boolean"}, "reasons": {"type": "array", "items": {"type": "string"}},
+      "crop_status": {"enum": ["verified", "needs_review"]},
+      "text_status": {"enum": ["verified", "needs_review"]},
+      "note": {"type": "string"}
+    }}
+  }
+}

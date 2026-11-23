@@ -1,0 +1,54 @@
+[
+  {
+    "academic_year": 2025,
+    "section": "A",
+    "filename": "2025_A.pdf",
+    "source_page_url": "https://www.scnu.ac.kr/comedu/na/ntt/selectNttInfo.do?nttSn=281284744",
+    "verified_attachment_url": "https://www.scnu.ac.kr/common/nttFileDownload.do?fileKey=580c32069ac8088112255342ed16302a",
+    "expected_questions": 12,
+    "verified_status": "source manifest retained; local PDF bytes present and source pages visually inspected",
+    "local_status": "present-and-source-pages-rendered",
+    "local_sha256": "b23f36a284867cc4a3de26f91396b0419006ce3fd4f85c484588ee3b89323edc",
+    "local_review_date": "2026-11-23",
+    "initial_discovery_status": "source-page-and-attachment-link-found; PDF bytes not downloaded in ChatGPT runtime"
+  },
+  {
+    "academic_year": 2025,
+    "section": "B",
+    "filename": "2025_B.pdf",
+    "source_page_url": "https://www.scnu.ac.kr/comedu/na/ntt/selectNttInfo.do?nttSn=281284744",
+    "verified_attachment_url": "https://www.scnu.ac.kr/common/nttFileDownload.do?fileKey=6c8e360d7bf214101983c957bb5cfc04",
+    "expected_questions": 11,
+    "verified_status": "source manifest retained; local PDF bytes present and source pages visually inspected",
+    "local_status": "present-and-source-pages-rendered",
+    "local_sha256": "3348389b8ceaf087de3543219dacc9ed3c7b4901075ca70804629c9ca1cb7458",
+    "local_review_date": "2026-11-23",
+    "initial_discovery_status": "source-page-and-attachment-link-found; PDF bytes not downloaded in ChatGPT runtime"
+  },
+  {
+    "academic_year": 2026,
+    "section": "A",
+    "filename": "2026_A.pdf",
+    "source_page_url": "https://www.cku.ac.kr/bbs/ce/589/361471/artclView.do",
+    "verified_attachment_url": null,
+    "expected_questions": 12,
+    "verified_status": "source manifest retained; local PDF bytes present and source pages visually inspected",
+    "local_status": "present-and-source-pages-rendered",
+    "local_sha256": "9a17670ad9aea31516c138e2c0b0119968bbbde93588ddfcff500ad348e7e611",
+    "local_review_date": "2026-11-23",
+    "initial_discovery_status": "source-page-and-attachment-name-found; PDF bytes not downloaded in ChatGPT runtime"
+  },
+  {
+    "academic_year": 2026,
+    "section": "B",
+    "filename": "2026_B.pdf",
+    "source_page_url": "https://www.cku.ac.kr/bbs/ce/589/361471/artclView.do",
+    "verified_attachment_url": "https://www.cku.ac.kr/bbs/ce/589/148169/download.do",
+    "expected_questions": 11,
+    "verified_status": "source manifest retained; local PDF bytes present and source pages visually inspected",
+    "local_status": "present-and-source-pages-rendered",
+    "local_sha256": "275e086042320efed3f2288c3c63272495605e9d713aded95bdf111a906c1c65",
+    "local_review_date": "2026-11-23",
+    "initial_discovery_status": "source PDF browsed and visually checked in web; PDF bytes not downloaded in ChatGPT runtime"
+  }
+]
