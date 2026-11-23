@@ -25,7 +25,8 @@ export default function Reader(){
  const qs=library?.questions.filter(q=>exact?q.id===`info-computer-${exact[1]}-${exact[2].toUpperCase()}-${Number(exact[3])}`:`${questionLabel(q)} ${q.search_text}`.toLowerCase().includes(query.toLowerCase()))||[];
  const cs=library?.concepts.filter(c=>`${c.title} ${c.aliases.join(' ')} ${c.body}`.toLowerCase().includes(query.toLowerCase()))||[];
  const links=library?.links.filter(l=>view.mode==='question'?l.question_id===view.id:l.concept_id===view.id)||[];
- const messages=detail?.messages||[],notes=(detail?.reflections||[]).filter(n=>n.type!=='question'||!messages.some(m=>m.id===n.message_id));
+ const explanations=links.flatMap(l=>{const concept=library?.concepts.find(c=>c.id===l.concept_id);return concept?[concept]:[];});
+ const notes=(detail?.reflections||[]).filter(n=>n.type!=='question');
  const canPdf=!!q||!!c||!!library?.concepts.length;
  return <div className="reader-app">
   <header className="header"><button className="brand" onClick={()=>go('book')}><Mark/><span>vivid<span>parachute</span></span></button><nav aria-label="읽기 화면"><button className={view.mode==='book'?'active':''} onClick={()=>go('book')}>개념 전과</button><button className={view.mode==='question'?'active':''} onClick={()=>go('question',q?.id||'info-computer-2026-A-3')}>기출·복습</button></nav><div className="header-actions"><button className="index-toggle" aria-expanded={listOpen} onClick={()=>setListOpen(!listOpen)}>목차·검색</button><button className="pdf-button" disabled={!canPdf||pdfBusy} onClick={download} aria-busy={pdfBusy}>{pdfBusy?'PDF 만드는 중…':'PDF 다운로드'}</button></div></header>
@@ -40,9 +41,9 @@ export default function Reader(){
   </main><aside className="margin-page" aria-label="학습 기록과 관련 개념"><h2>{view.mode==='question'?'이 문제에서 공부한 것':'책의 여백'}</h2>
    {view.mode==='question'&&!!links.length&&<section className="related"><h3>관련 개념</h3>{links.map(l=>{const c=library?.concepts.find(c=>c.id===l.concept_id);return c&&<button key={c.id} onClick={()=>go('book',c.id)}><strong>{c.title}</strong><span>{l.context}</span></button>;})}</section>}
    {view.mode==='book'&&!!links.length&&<section className="related"><h3>관련 기출</h3>{links.map(l=>{const q=library?.questions.find(q=>q.id===l.question_id);return q&&<button key={q.id} onClick={()=>go('question',q.id)}><strong>{questionLabel(q)}</strong><span>{l.context}</span></button>;})}</section>}
-   {!!messages.length&&<section className="study-history"><h3>{view.mode==='question'?'질문과 정리':'이 개념을 복원한 질문'}</h3>{messages.map(m=><article className={`study-entry ${m.role}`} key={m.id}><span className="entry-label">{m.role==='user'?'질문':'Codex에서 정리한 내용'}</span>{m.role==='user'?<p>{m.text}</p>:<Markdown>{m.text}</Markdown>}</article>)}</section>}
+   {view.mode==='question'&&explanations.map(concept=><article className="study-entry assistant" key={concept.id}><Markdown>{concept.body}</Markdown></article>)}
    {!!notes.length&&<section className="personal-notes"><h3>남겨 둔 기록</h3>{notes.map(n=><article className="personal-note" key={n.id}><span className="entry-label">{labels[n.type]}</span><p>{n.content}</p></article>)}</section>}
-   {!messages.length&&!notes.length&&<p className="margin-empty">{view.mode==='question'?<>이 문항을 Codex에서 공부하면<br/>질문과 복습할 내용이 여기에 쌓입니다.</>:<>개념에 연결된 기출과<br/>공부하며 남긴 기록을 함께 봅니다.</>}</p>}
+   {!explanations.length&&!notes.length&&<p className="margin-empty">{view.mode==='question'?'아직 작성된 설명이 없습니다.':'관련 기출을 함께 읽으며 복습할 수 있습니다.'}</p>}
   </aside></div>
  </div>;
 }

@@ -21,10 +21,10 @@ function md(s:string){return String(unified().use(remarkParse).use(remarkGfm).us
 function prose(s:string){return `<div class="prose">${md(s)}</div>`;}
 const noteNames:Record<string,string>={question:'질문',thought:'나의 생각',confusion:'궁금했던 부분',mistake:'오답 기록',review:'복습',memo:'메모'};
 function records(db:ReaderStore,qid?:string,cid?:string){
- const messages=qid?db.messages(qid):cid?db.conceptMessages(cid):[];
+
  const extra=cid?db.links().filter(l=>l.concept_id===cid).flatMap(l=>db.reflections(l.question_id).filter(r=>r.type!=='question')):[];
- const notes=[...db.reflections(qid,cid),...extra].filter(n=>n.type!=='question'||!messages.some(m=>m.id===n.message_id));
- return `${messages.length?'<h2>질문과 정리</h2>':''}${messages.map(m=>`<section class="entry"><h3>${m.role==='user'?'질문':'Codex에서 정리한 내용'}</h3>${m.role==='user'?`<p class="verbatim">${escape(m.text)}</p>`:prose(m.text)}</section>`).join('')}${notes.length?'<h2>남겨 둔 기록</h2>':''}${notes.map(n=>`<section class="entry"><h3>${noteNames[n.type]}</h3><p class="verbatim">${escape(n.content)}</p></section>`).join('')}`;
+ const notes=[...db.reflections(qid,cid),...extra].filter(n=>n.type!=='question');
+ return `${notes.length?'<h2>남겨 둔 기록</h2>':''}${notes.map(n=>`<section class="entry"><h3>${noteNames[n.type]}</h3><p class="verbatim">${escape(n.content)}</p></section>`).join('')}`;
 }
 export function pdfBody(db:ReaderStore,view:'book'|'question',id:string){
  if(view==='question'){
