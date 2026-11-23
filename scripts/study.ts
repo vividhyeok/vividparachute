@@ -13,7 +13,7 @@ async function main(){
   if(command==='context'){
    const text=process.argv[3]||'';let q;try{q=resolveQuestion(text,db.questions());}catch(e){if(/20\d{2}/.test(text))throw e;}
    const concepts=q?db.concepts():db.concepts().filter(c=>`${c.title} ${c.aliases.join(' ')} ${c.body}`.toLowerCase().includes(text.toLowerCase()));
-   console.log(JSON.stringify({question:q?{...q,assets:q.assets.map(a=>({...a,absolutePath:safeAssetPath(a.path)}))}:null,concepts,links:db.links(),messages:q?db.messages(q.id):[],reflections:q?db.reflections(q.id):[],instruction:'Read the actual original images before answering a question. Preserve the user wording. Rewrite canonical concepts, do not append chat. expectedVersion must match these versions.'},null,2));return;
+   console.log(JSON.stringify({question:q?{...q,assets:q.assets.map(a=>({...a,absolutePath:safeAssetPath(a.path)}))}:null,progress:q?db.export().question_progress.find(p=>p.question_id===q.id)??null:undefined,concepts,links:db.links(),messages:q?db.messages(q.id):[],reflections:q?db.reflections(q.id):[],instruction:'Read the actual original images before answering a question. Preserve the user wording. Rewrite canonical concepts, do not append chat. expectedVersion must match these versions. Set optional progress only when the user explicitly reports completion or asks to reopen a completed question.'},null,2));return;
   }
   if(command==='record'){
    if(!process.argv[3])throw new Error('record <entry.json>을 지정하세요.');

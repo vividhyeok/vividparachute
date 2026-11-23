@@ -86,6 +86,13 @@ export type Library = {
   concepts: Concept[];
   links: Link[];
   version: string;
+  questionStudy: Record<string, QuestionStudy>;
+};
+export type QuestionProgress = { question_id: string; status: 'in_progress' | 'completed'; updated_at: string };
+export type QuestionStudy = {
+  status: 'unrecorded' | 'in_progress' | 'completed';
+  hasExplanation: boolean;
+  lastStudiedAt: string | null;
 };
 
 export const LearningSchema = z.object({
@@ -107,6 +114,7 @@ export type Learning = z.infer<typeof LearningSchema>;
 export const StudyEntrySchema = z.object({
   entryId: z.string().min(8).max(150),
   questionId: z.string().regex(/^info-computer-\d{4}-[AB]-\d{1,2}$/).optional(),
+  progress: z.enum(['in_progress','completed']).optional(),
   question: z.string().trim().min(1).max(30000), answer: z.string().trim().min(1).max(30000),
   source: z.string().trim().min(1).max(500).default('Codex'),
   concepts: z.array(z.object({
@@ -115,5 +123,6 @@ export const StudyEntrySchema = z.object({
     body: z.string().trim().min(1).max(40000), context: z.string().max(1000), expectedVersion: z.number().int().min(0),
   })).max(8),
   reflections: z.array(z.object({type:z.enum(['thought','confusion','mistake','review','memo']),content:z.string().trim().min(1).max(10000)})).max(12).default([]),
-}).refine(e=>!!e.questionId || e.concepts.length>0,{message:'문항이나 개념이 필요합니다.'});
+}).refine(e=>!!e.questionId || e.concepts.length>0,{message:'문항이나 개념이 필요합니다.'})
+  .refine(e=>!e.progress || !!e.questionId,{message:'풀이 상태에는 문항이 필요합니다.'});
 export type StudyEntry = z.infer<typeof StudyEntrySchema>;

@@ -12,6 +12,7 @@ import {
   type Revision,
   type Learning,
   type StudyEntry,
+  type QuestionProgress,
 } from "./types";
 
 const OWNER = "local-owner";
@@ -42,6 +43,7 @@ export class Store {
       CREATE TABLE IF NOT EXISTS extraction_revisions(id INTEGER PRIMARY KEY AUTOINCREMENT, question_id TEXT REFERENCES questions(id), before_data TEXT NOT NULL, after_data TEXT NOT NULL, created_at TEXT NOT NULL);
       CREATE TABLE IF NOT EXISTS ai_audits(id TEXT PRIMARY KEY, owner TEXT NOT NULL, question_id TEXT REFERENCES questions(id), data TEXT NOT NULL, created_at TEXT NOT NULL);`);
     this.db.exec(`CREATE TABLE IF NOT EXISTS study_entries(id TEXT PRIMARY KEY, owner TEXT NOT NULL, question_id TEXT REFERENCES questions(id), user_message_id TEXT REFERENCES messages(id), answer_message_id TEXT REFERENCES messages(id), concept_ids TEXT NOT NULL, source TEXT NOT NULL, fingerprint TEXT NOT NULL, created_at TEXT NOT NULL);`);
+    this.db.exec(`CREATE TABLE IF NOT EXISTS question_progress(owner TEXT NOT NULL, question_id TEXT NOT NULL REFERENCES questions(id), status TEXT NOT NULL CHECK(status IN ('in_progress','completed')), updated_at TEXT NOT NULL, PRIMARY KEY(owner,question_id));`);
   }
   transaction<T>(fn: () => T): T {
     this.db.exec("BEGIN IMMEDIATE");
@@ -405,6 +407,7 @@ export class Store {
       const targets=entry.questionId?[{questionId:entry.questionId}]:conceptIds.map(conceptId=>({conceptId}));
       for(const target of targets){this.addReflection({...target,type:'question',content:entry.question,messageId:userId});for(const r of entry.reflections)this.addReflection({...target,...r,messageId:userId});}
       this.db.prepare('INSERT INTO study_entries VALUES (?,?,?,?,?,?,?,?,?)').run(entry.entryId,OWNER,entry.questionId??null,userId,answerId,JSON.stringify(conceptIds),entry.source,fingerprint,new Date().toISOString());
+      if(entry.progress&&entry.questionId)this.db.prepare('INSERT INTO question_progress VALUES (?,?,?,?) ON CONFLICT(owner,question_id) DO UPDATE SET status=excluded.status,updated_at=excluded.updated_at').run(OWNER,entry.questionId,entry.progress,new Date().toISOString());
       return {duplicate:false,conceptIds};
     });
   }
@@ -431,6 +434,7 @@ export class Store {
         .prepare("SELECT * FROM extraction_revisions")
         .all(),
       study_entries:this.db.prepare('SELECT * FROM study_entries WHERE owner=?').all(OWNER),
+      question_progress:this.db.prepare('SELECT question_id,status,updated_at FROM question_progress WHERE owner=?').all(OWNER) as unknown as QuestionProgress[],
     };
   }
 }
