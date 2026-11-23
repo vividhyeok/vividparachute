@@ -11,7 +11,7 @@ export function localOnly(request: Request) {
 
 export function requireReader(request:Request) {
   if(process.env.VERCEL==='1') {
-    if(process.env.VP_DEPLOYMENT_PROTECTED!=='true')throw new Error('개인 서재의 배포 보호 설정을 확인해 주세요.');
+    if(process.env.VP_PUBLIC_READER!=='true')throw new Error('서재의 공개 읽기 설정을 확인해 주세요.');
     const origin=request.headers.get('origin');
     if(origin&&new URL(origin).host!==new URL(request.url).host)throw new Error('외부 사이트의 접근을 허용하지 않습니다.');
     if(request.headers.get('sec-fetch-site')==='cross-site')throw new Error('외부 사이트의 접근을 허용하지 않습니다.');

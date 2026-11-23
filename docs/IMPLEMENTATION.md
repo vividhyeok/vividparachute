@@ -23,7 +23,7 @@ OCR 원문 PDF는 이미지 SHA로 캐시한다. 최신 복습 본문은 다운�
 
 PC의 SQLite가 학습 원본이다. 원본 이미지와 OCR PDF를 PRIVATE Vercel Blob에 저장한 뒤 데이터 스냅샷 포인터를 교체한다. 배포 웹은 같은 스냅샷으로 두 화면을 읽는다. ETag 조건부 조회로 변경 없는 데이터 전송을 줄인다. PC가 꺼져도 마지막 게시본과 PDF를 읽는다. 웹 서버의 임시 디스크에는 학습 데이터를 저장하지 않는다.
 
-Vercel Authentication으로 보호한 개인 배포를 사용한다. 배포의 보호 설정을 유지해야 한다. Cloud 읽기 기능은 `VP_DEPLOYMENT_PROTECTED`가 활성화되지 않으면 거부한다. 로컬은 루프백 접근만 허용한다.
+사용자는 로그인 없이 바로 여는 공개 서재를 선택했다. Vercel Authentication을 사용하지 않으며 `VP_PUBLIC_READER=true`로 공개 읽기를 명시한다. 앱 서버가 PRIVATE Blob 파일을 읽어 공개 API/이미지/PDF로 제공하고 업로드 키는 노출하지 않는다. 별도 DB 서버는 없다. 로컬은 루프백 접근만 허용한다.
 
 `npm run ship`은 의도한 origin/main을 확인하고, 개인 자료가 스테이징되면 중단한다. 소스 푸시는 Vercel Git 연결로 자동 배포한다. 새 학습 기록은 GitHub 커밋·재빌드 없이 `record` 명령이 비공개 저장소에 동기화한다.
 
