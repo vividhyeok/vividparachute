@@ -8,6 +8,7 @@
     "start": "next start --hostname 127.0.0.1",
     "import": "tsx scripts/import-corpus.ts",
     "study": "tsx scripts/study.ts",
+    "review:sources": "tsx scripts/review-transcriptions.ts",
     "sync": "tsx scripts/study.ts sync",
     "ship": "tsx scripts/ship.ts",
     "test": "tsx --test tests/*.test.ts",

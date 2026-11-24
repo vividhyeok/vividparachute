@@ -1,5 +1,14 @@
 import { z } from "zod";
 
+export const SourceTranscriptionSchema = z.object({
+  format:z.literal('reviewed-markdown-v1'),
+  body:z.string().min(1).max(100000),
+  figures:z.array(z.object({id:z.string().regex(/^[\w-]+$/),assetIndex:z.number().int().min(0),rect:z.tuple([z.number().nonnegative(),z.number().nonnegative(),z.number().positive(),z.number().positive()]),assetWidth:z.number().int().positive(),assetHeight:z.number().int().positive(),description:z.string().min(1)})),
+  reviewedAssets:z.array(z.object({path:z.string(),sha256:z.string().regex(/^[a-f0-9]{64}$/)})).min(1),
+  sourceSha256:z.string().regex(/^[a-f0-9]{64}$/),checkedAt:z.string().datetime({offset:true}),unresolved:z.array(z.string()),reviewNote:z.string().min(1),
+});
+export type SourceTranscription=z.infer<typeof SourceTranscriptionSchema>;
+
 export const QuestionSchema = z
   .object({
     id: z.string().regex(/^info-computer-\d{4}-[AB]-\d{1,2}$/),
@@ -18,6 +27,7 @@ export const QuestionSchema = z
     }),
     raw_text: z.string(),
     verified_text: z.string().optional(),
+    transcription:SourceTranscriptionSchema.optional(),
     assets: z.array(
       z.object({
         path: z.string(),

@@ -13,7 +13,9 @@ import {
   type Learning,
   type StudyEntry,
   type QuestionProgress,
+  type SourceTranscription,
 } from "./types";
+import {transcriptionText,validateSourceFigures} from './transcription';
 
 const OWNER = "local-owner";
 const normalize = (s: string) =>
@@ -83,6 +85,7 @@ export class Store {
         if (old?.verified_text !== undefined) {
           q.verified_text = old.verified_text;
           q.review = old.review;
+          if(old.transcription){q.transcription=old.transcription;q.analysis=old.analysis;}
         }
         this.db
           .prepare(
@@ -369,6 +372,22 @@ export class Store {
         .prepare("UPDATE questions SET data=? WHERE id=?")
         .run(JSON.stringify(q), id);
     });
+  }
+  reviewQuestions(sources:Record<string,SourceTranscription>){
+    return this.transaction(()=>Object.entries(sources).filter(([id,source])=>this.reviewQuestion(id,source)).map(([id])=>id));
+  }
+  private reviewQuestion(id:string,source:SourceTranscription){
+    validateSourceFigures(source);
+    const q=this.question(id);if(!q)throw new Error('문항이 없습니다.');
+    if(q.source.sha256!==source.sourceSha256||q.assets.length!==source.reviewedAssets.length||q.assets.some((a,i)=>a.path!==source.reviewedAssets[i].path))throw new Error('검수한 원본과 현재 문항이 다릅니다.');
+    if(JSON.stringify(q.transcription)===JSON.stringify(source))return false;
+    const before=JSON.stringify(q),complete=source.unresolved.length===0;
+    q.transcription=source;q.verified_text=transcriptionText(source);
+    q.analysis={...q.analysis,status:complete?'verified':'needs_review',visuals:source.figures.map(f=>({...f,type:'source-region',asset_path:q.assets[f.assetIndex].path,confidence:'verified'})),sections:[{type:'reviewed-source',text:q.verified_text}]};
+    q.review={...q.review,required:!complete,reasons:source.unresolved,text_status:complete?'verified':'needs_review',note:source.reviewNote};
+    this.db.prepare('INSERT INTO extraction_revisions(question_id,before_data,after_data,created_at) VALUES (?,?,?,?)').run(id,before,JSON.stringify(q),new Date().toISOString());
+    this.db.prepare('UPDATE questions SET data=? WHERE id=?').run(JSON.stringify(q),id);
+    return true;
   }
   audit(qid: string, data: unknown) {
     this.db

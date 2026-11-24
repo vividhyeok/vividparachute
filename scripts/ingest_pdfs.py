@@ -271,10 +271,21 @@ def build_exam(source, dest, overrides):
             "review": {"required": True, "reasons": reasons}
         }
         correction = corrections.get(qid)
+        if correction and correction.get('transcription'):
+            evidence=correction['transcription']
+            checked=evidence.get('reviewedAssets',[])
+            valid=evidence.get('sourceSha256')==pdf_hash and len(checked)==len(assets) and all(
+                a['path']==e['path'] and hashlib.sha256((ROOT/'data/processed'/a['path']).read_bytes()).hexdigest()==e['sha256']
+                for a,e in zip(assets,checked))
+            if not valid:
+                correction=None
+                reasons.append('기존 상세 검수본의 원본/이미지 해시가 변경됨. 재대조 필요.')
         if correction:
             item['verified_text'] = correction['verified_text']
+            if correction.get('transcription'):
+                item['transcription']=correction['transcription']
             item['analysis'] = {'status':'verified','visuals':[
-                dict(v, asset_path=assets[0]['path']) for v in correction['visuals']
+                dict(v, asset_path=assets[v.get('assetIndex',0)]['path']) for v in correction['visuals']
             ], 'sections':[{'type':'stem','text':correction['verified_text'],'source_asset':assets[0]['path']}], 'concept_tags':correction['concept_tags']}
             item['review'] = {'required':False,'reasons':[], 'crop_status':'verified','text_status':'verified','note':correction['review_note']}
         else:
