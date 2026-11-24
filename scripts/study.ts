@@ -25,9 +25,9 @@ async function main(){
   if(command==='pdf'){
    const ref=process.argv[3]||'';const q=/20\d{2}/.test(ref)?resolveQuestion(ref,db.questions()):undefined;
    const c=!q&&ref?db.concepts().find(c=>c.id===ref||c.title===ref):undefined;
-   if(ref&&!q&&!c)throw new Error('문항 또는 개념을 찾지 못했습니다.');
-   const {exportPdf}=await import('../lib/pdf');const bytes=await exportPdf(db,q?'question':'book',q?.id||c?.id||'');
-   const output=path.resolve(process.argv[4]||`output/pdf/${q?.id||c?.slug||'vividparachute'}.pdf`);mkdirSync(path.dirname(output),{recursive:true});writeFileSync(output,bytes);console.log(output);return;
+   if(ref&&ref!=='all'&&!q&&!c)throw new Error('문항 또는 개념을 찾지 못했습니다.');
+   const {exportPdf}=await import('../lib/pdf');const bytes=await exportPdf(db,ref==='all'?'all':q?'question':'book',q?.id||c?.id||'');
+   const output=path.resolve(process.argv[4]||`output/pdf/${q?.id||c?.slug||(ref==='all'?'study-notes':'vividparachute')}.pdf`);mkdirSync(path.dirname(output),{recursive:true});writeFileSync(output,bytes);console.log(output);return;
   }
   if(command==='undo'){const n=Number(process.argv[3]);if(!Number.isInteger(n))throw new Error('revision ID가 필요합니다.');db.undo(n);if(!process.argv.includes('--local-only')){const {publishLibrary}=await import('../lib/publish');await publishLibrary(db);}console.log('Restored the previous concept body.');return;}
   console.log('study context "2026 A 3번" | context "개념" | record entry.json [--local-only] | sync | pdf "2026 A 3번" [output.pdf] | undo revisionId');

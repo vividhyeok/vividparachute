@@ -1,5 +1,6 @@
 import type { QuestionStudy, QuestionSummary } from '@/lib/types';
 import { questionLabel } from '@/lib/search';
+import HintButton from './HintButton';
 
 type Props = {
   questions: QuestionSummary[];
@@ -25,19 +26,17 @@ export default function QuestionIndex({ questions, study, visited, onSelect, cur
   const resume = latest ?? lastViewed;
   return <div className={`question-index${compact ? ' compact' : ''}`}>
     {resume && <button className="resume-question" onClick={() => onSelect(resume.id)}><span>{latest ? '최근 공부 이어보기' : '마지막으로 열어본 문항'}</span><strong>{questionLabel(resume)} →</strong></button>}
-    <ul className="study-legend" aria-label="문항 상태 안내">{Object.entries(statusNames).map(([key, label]) => <li className={`status-${key}`} key={key}><span className="status-dot" aria-hidden="true"/>{label}</li>)}<li className="explanation-legend">밑줄 · 설명 있음</li></ul>
+    <details className="status-help"><summary aria-label="문항 표시 안내" title="문항 표시 안내">ⓘ</summary><div><ul className="study-legend" aria-label="문항 상태 안내">{Object.entries(statusNames).map(([key, label]) => <li className={`status-${key}`} key={key}><span className="status-dot" aria-hidden="true"/>{label}</li>)}<li className="explanation-legend">밑줄 · 설명 있음</li></ul><p className="progress-caption">열어봄은 이 브라우저 기준 · 풀이 완료는 직접 완료를 알린 기록 기준</p></div></details>
     <div className="question-groups">{[...groups].map(([label, items]) => <section className="question-group" key={label} aria-label={label}><h3>{label}</h3><div className="question-cells">{items.map(q => {
       const entry = study[q.id];
       const status = entry?.status && entry.status !== 'unrecorded' ? entry.status : visited[q.id] ? 'visited' : 'unrecorded';
       const isLatest = latest?.id === q.id;
       const description = `${questionLabel(q)} · ${statusNames[status]}${entry?.hasExplanation ? ' · 설명 있음' : ''}${isLatest ? ' · 최근 공부' : ''}`;
-      return <button key={q.id} className={`question-cell status-${status}${entry?.hasExplanation ? ' has-explanation' : ''}${isLatest ? ' latest-study' : ''}`} onClick={() => onSelect(q.id)} aria-label={description} title={description} aria-current={currentId === q.id ? 'page' : undefined}>
+      return <HintButton key={q.id} hint={description} className={`question-cell status-${status}${entry?.hasExplanation ? ' has-explanation' : ''}${isLatest ? ' latest-study' : ''}`} onClick={() => onSelect(q.id)} aria-label={description} aria-current={currentId === q.id ? 'page' : undefined}>
         <span className="question-cell-number"><span className="status-dot" aria-hidden="true"/>{q.question_number}번</span>
-        <span className="question-cell-status">{statusNames[status]}</span>
-        {isLatest && <span className="latest-mark">최근 공부</span>}
-      </button>;
+        {isLatest && <span className="latest-pin" aria-hidden="true"/>}
+      </HintButton>;
     })}</div></section>)}</div>
     {questions.length === 0 && <p className="muted">일치하는 문항이 없습니다.</p>}
-    <p className="progress-caption">열어봄은 이 브라우저 기준 · 풀이 완료는 직접 완료를 알린 기록 기준</p>
   </div>;
 }
